@@ -31,6 +31,10 @@ public class Reservation {
     @JoinColumn(name="payment_number")
     private Payment payment;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name="ticket_number")
+    private Ticket ticket;
+
 
 
 }

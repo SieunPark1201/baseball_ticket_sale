@@ -17,18 +17,22 @@ public class Member {
     @Column(unique = true)
     private Long id;
 
-    @Column(unique = true)
+    @Column(length= 50, unique = true)
     private String email;
 
     @NotNull
+    @Column(length = 30)
     private String password;
 
     @NotNull
+    @Column(length = 30)
     private String phoneNumber;
 
     @NotNull
+    @Column(length = 20)
     private String name;
 
+    @Column(length = 20)
     private String favoriteTeam;
 
     @Embedded

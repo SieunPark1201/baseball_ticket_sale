@@ -16,7 +16,7 @@ public class Ticket {
 
     private String area;
 
-    private String purchaseLimit;
+    private String amount;
 
     private int price;
 
