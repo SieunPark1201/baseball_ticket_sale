@@ -24,7 +24,7 @@ public class Cancel {
 
     @OneToOne
     @JoinColumn(name="match_day")
-    private Match match;
+    private Matching matching;
 
     @OneToOne
     @JoinColumn(name="reservation_number")

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,17 +24,17 @@ public class Reservation {
 
     LocalDateTime createDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="member_number")
-    private Member member;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name="id")
+    private List<Member> members;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="payment_number")
+    @JoinColumn(name="paymentNumber")
     private Payment payment;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name="ticket_number")
-    private Ticket ticket;
+    @JoinColumn(name="ticketNumber")
+    private List<Ticket> tickets;
 
 
 

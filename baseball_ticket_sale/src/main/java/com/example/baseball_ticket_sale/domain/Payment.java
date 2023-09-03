@@ -30,7 +30,7 @@ public class Payment {
     private LocalDateTime createDate;
 
     @OneToOne
-    @JoinColumn(name="reservation_id")
+    @JoinColumn(name="reservationNumber")
     private Reservation reservation;
 
 }

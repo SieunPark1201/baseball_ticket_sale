@@ -11,9 +11,8 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-public class Match {
+public class Matching {
     @Id
-    @NotNull
     @Column(length = 50)
     private String matchDayAndTime;
 

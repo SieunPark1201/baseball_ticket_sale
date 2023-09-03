@@ -20,8 +20,8 @@ public class Ticket {
 
     private int price;
 
-    @JoinColumn(name="matchDay")
     @OneToOne
-    private Match match;
+    @JoinColumn(name="matchDayAndTime")
+    private Matching matching;
 
 }
