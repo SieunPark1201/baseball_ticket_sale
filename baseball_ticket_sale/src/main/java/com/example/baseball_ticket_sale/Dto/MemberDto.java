@@ -16,7 +16,11 @@ public class MemberDto {
     private String name;
     private String favoriteTeam;
 
-    private String address;
+    private String city;
+
+    private String street;
+
+    private String zipcode;
     private LocalDateTime createDate;
     private int point;
 }

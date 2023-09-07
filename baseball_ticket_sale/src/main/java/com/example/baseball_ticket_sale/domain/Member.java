@@ -1,6 +1,7 @@
 package com.example.baseball_ticket_sale.domain;
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,11 +37,23 @@ public class Member {
     private String favoriteTeam;
 
     @Embedded
-    private String address;
+    private Address address;
 
     @NotNull
     private LocalDateTime createDate;
 
     private int point;
+
+    @Builder
+    public Member(String email, String password, String phoneNumber, String name, String favoriteTeam, Address address, int point) {
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+        this.favoriteTeam = favoriteTeam;
+        this.address = address;
+        this.point = point;
+        this.createDate = LocalDateTime.now();
+    }
 
 }
