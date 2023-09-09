@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>메인 페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<h1>Home</h1>
+<h1>home</h1>
+
+<h1>경기 리스트</h1>
+
+<!-- 구단 선택란 -->
+<form th:action="@{team}" method="get">
+    <label for="team">구단 선택:</label>
+    <select name="team" id="team">
+        <option value="">구단을 선택하세요</option>
+        <option th:each="team : ${teams}" th:value="${team}" th:text="${team}"></option>
+        <option th:each="team : ${teams}" th:value="${team}" th:text="${team}"></option>
+
+    </select>
+    <button type="submit">검색</button>
+</form>
+
+<!-- 야구장 선택란 -->
+<form th:action="@{lists/stadium}" method="get">
+    <label for="stadium">야구장 선택:</label>
+    <select name="stadium" id="stadium">
+        <option value="">전체</option>
+        <option th:each="stadium : ${stadiums}" th:value="${stadium}" th:text="${stadium}"></option>
+    </select>
+    <button type="submit">검색</button>
+</form>
+
+<!-- 경기 리스트 테이블 -->
+<table>
+    <thead>
+    <tr>
+        <th>날짜</th>
+        <th>시간</th>
+        <th>팀1</th>
+        <th>팀2</th>
+        <th>구장</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="matching : ${lists}">
+        <td th:text="${matching.dateAndTime}"></td>
+        <td th:text="${matching.homeTeam}"></td>
+        <td th:text="${matching.awayTeam}"></td>
+        <td th:text="${matching.stadium}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

@@ -13,6 +13,8 @@ import javax.persistence.Id;
 @Setter
 public class Matching {
     @Id
+    private Long matchingId;
+
     @Column(length = 50)
     private String matchDayAndTime;
 

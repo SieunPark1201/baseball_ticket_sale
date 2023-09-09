@@ -21,17 +21,13 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-//    회원수정
-    public void update(Member member) throws Exception {
-//        로그인한 회원의 정보 수정
-//        Member member1 = memberRepository
-    }
 
-//    @Override
+
+//    회원수정
     @Transactional
-    public Member update(Long id, MemberDto memberDto) {
-        Member member1 = memberRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+    public Member update(MemberDto memberDto) throws Exception {
+        Member member1 = memberRepository.findById(Long.parseLong(Integer.toString(memberDto.getId())))
+                .orElseThrow(Exception::new);
 
         // memberDTO로부터 업데이트할 정보를 추출하여 기존 사용자 정보를 업데이트
         member1.setEmail(memberDto.getEmail());

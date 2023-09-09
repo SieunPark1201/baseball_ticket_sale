@@ -13,13 +13,13 @@ public class Address {
 
     private String city;
 
-    private String street;
+    private String detail;
 
     private String zipcode;
 
-    public Address(String city,String street, String zipcode) {
+    public Address(String city,String detail, String zipcode) {
         this.city = city;
-        this.street = street;
+        this.detail = detail;
         this.zipcode = zipcode;
     }
 

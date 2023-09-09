@@ -15,7 +15,7 @@ public class Cancel {
     private Long cancelNumber;
 
     @Column(length = 30)
-    private String cancelStatus;
+    private boolean cancelStatus;
 
     private int refundFee;
 
