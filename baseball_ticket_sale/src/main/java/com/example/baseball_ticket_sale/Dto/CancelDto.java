@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CancelDto {
-    private int cancelNumber;
+    private Long cancelNumber;
     private String cancelStatus;
     private int refundFee;
     private String refundStatus;

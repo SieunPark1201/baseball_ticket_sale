@@ -37,15 +37,15 @@
         </div>
         <div class="form-group">
             <label th:for="city">주소</label>
-            <input type="text" th:field="*{}" class="form-control" placeholder="주소를 입력하세요">
+            <input type="text" th:field="*{city}" class="form-control" placeholder="주소를 입력하세요">
         </div>
         <div class="form-group">
-            <label th:for="city">상세주소</label>
-            <input type="text" th:field="*{city}" class="form-control" placeholder="상세주소를 입력하세요">
+            <label th:for="detail">상세주소</label>
+            <input type="text" th:field="*{detail}" class="form-control" placeholder="상세주소를 입력하세요">
         </div>
         <div class="form-group">
-            <label th:for="city">우편번호</label>
-            <input type="text" th:field="*{street}" class="form-control" placeholder="우편번호를 입력하세요">
+            <label th:for="zipcode">우편번호</label>
+            <input type="text" th:field="*{zipcode}" class="form-control" placeholder="우편번호를 입력하세요">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

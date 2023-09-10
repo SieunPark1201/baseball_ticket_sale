@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class MemberDto {
-    private int id;
+    private Long id;
     private String email;
     private String password;
     private String phoneNumber;
@@ -18,7 +18,7 @@ public class MemberDto {
 
     private String city;
 
-    private String street;
+    private String detail;
 
     private String zipcode;
     private LocalDateTime createDate;

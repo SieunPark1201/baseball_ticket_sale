@@ -4,6 +4,8 @@ import com.example.baseball_ticket_sale.domain.Cancel;
 import com.example.baseball_ticket_sale.domain.Matching;
 import com.example.baseball_ticket_sale.domain.Reservation;
 import com.example.baseball_ticket_sale.repository.CancelRepository;
+import com.example.baseball_ticket_sale.repository.MatchingRepository;
+import com.example.baseball_ticket_sale.repository.ReservationRepository;
 import com.fasterxml.jackson.databind.deser.DataFormatReaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,14 @@ import org.springframework.stereotype.Service;
 public class CancelService {
 
     @Autowired
-    CancelRepository cancelRepository;
+    private CancelRepository cancelRepository;
+    @Autowired
+    private MatchingRepository matchingRepository;
+    @Autowired
+    private ReservationRepository reservationRepository;
+
+
+//    취소 조회하기
 
 //    취소하기
     public Cancel cancelReservation(Long matchId, Long reservationId){

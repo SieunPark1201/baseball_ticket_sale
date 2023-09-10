@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class MatchingDto {
+
+    private Long matchingId;
     private String matchDayAndTime;
     private String homeTeam;
     private String awayTeam;

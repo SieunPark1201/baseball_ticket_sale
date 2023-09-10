@@ -1,7 +1,10 @@
 package com.example.baseball_ticket_sale.service;
 
 import com.example.baseball_ticket_sale.domain.Reservation;
+import com.example.baseball_ticket_sale.domain.Ticket;
+import com.example.baseball_ticket_sale.repository.MemberRepository;
 import com.example.baseball_ticket_sale.repository.ReservationRepository;
+import com.example.baseball_ticket_sale.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,10 @@ public class ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+
+
+
 
     public void create(Reservation reservation) throws SQLException {
         reservationRepository.save(reservation);

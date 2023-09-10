@@ -1,56 +1,90 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>메인 페이지</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>야구 예매 사이트</title>
+
+    <!-- Bootstrap CSS (CDN 사용) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 추가적인 CSS 스타일링 -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>home</h1>
+<!-- 네비게이션 바 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">야구 예매 사이트</a>
+    <!-- 로그인 및 회원가입 버튼 -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">로그인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">회원가입</a>
+        </li>
+    </ul>
+</nav>
 
-<h1>경기 리스트</h1>
+<div class="container mt-4">
+    <!-- 제목 -->
+    <h1 class="text-center">야구 경기 목록</h1>
 
-<!-- 구단 선택란 -->
-<form th:action="@{team}" method="get">
-    <label for="team">구단 선택:</label>
-    <select name="team" id="team">
-        <option value="">구단을 선택하세요</option>
-        <option th:each="team : ${teams}" th:value="${team}" th:text="${team}"></option>
-        <option th:each="team : ${teams}" th:value="${team}" th:text="${team}"></option>
+    <!-- 구단 선택 란 -->
+    <div class="form-group">
+        <label for="teamSelect">구단 선택:</label>
+        <select class="form-control" id="teamSelect">
+            <option value="">전체</option>
+            <option value="Team1">구단1</option>
+            <option value="Team2">구단2</option>
+            <!-- 구단 목록을 동적으로 생성하려면 서버에서 데이터 가져와서 반복문으로 옵션을 추가할 수 있습니다. -->
+        </select>
+    </div>
 
-    </select>
-    <button type="submit">검색</button>
-</form>
+    <!-- 야구장 선택 란 -->
+    <div class="form-group">
+        <label for="stadiumSelect">야구장 선택:</label>
+        <select class="form-control" id="stadiumSelect">
+            <option value="">전체</option>
+            <option value="Stadium1">야구장1</option>
+            <option value="Stadium2">야구장2</option>
+            <!-- 야구장 목록을 동적으로 생성하려면 서버에서 데이터 가져와서 반복문으로 옵션을 추가할 수 있습니다. -->
+        </select>
+    </div>
 
-<!-- 야구장 선택란 -->
-<form th:action="@{lists/stadium}" method="get">
-    <label for="stadium">야구장 선택:</label>
-    <select name="stadium" id="stadium">
-        <option value="">전체</option>
-        <option th:each="stadium : ${stadiums}" th:value="${stadium}" th:text="${stadium}"></option>
-    </select>
-    <button type="submit">검색</button>
-</form>
+    <!-- 경기 목록 테이블 -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">날짜</th>
+            <th scope="col">시간</th>
+            <th scope="col">팀1</th>
+            <th scope="col">팀2</th>
+            <th scope="col">구장</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 서버에서 동적으로 데이터를 가져와서 행을 추가할 수 있습니다. -->
+        <tr>
+            <td>2023-09-10</td>
+            <td>19:00</td>
+            <td>팀A</td>
+            <td>팀B</td>
+            <td>구장X</td>
+        </tr>
+        <tr>
+            <td>2023-09-11</td>
+            <td>14:30</td>
+            <td>팀C</td>
+            <td>팀D</td>
+            <td>구장Y</td>
+        </tr>
+        <!-- 추가 데이터 추가 가능 -->
+        </tbody>
+    </table>
+</div>
 
-<!-- 경기 리스트 테이블 -->
-<table>
-    <thead>
-    <tr>
-        <th>날짜</th>
-        <th>시간</th>
-        <th>팀1</th>
-        <th>팀2</th>
-        <th>구장</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="matching : ${lists}">
-        <td th:text="${matching.dateAndTime}"></td>
-        <td th:text="${matching.homeTeam}"></td>
-        <td th:text="${matching.awayTeam}"></td>
-        <td th:text="${matching.stadium}"></td>
-    </tr>
-    </tbody>
-</table>
+<!-- Bootstrap JavaScript (CDN 사용) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

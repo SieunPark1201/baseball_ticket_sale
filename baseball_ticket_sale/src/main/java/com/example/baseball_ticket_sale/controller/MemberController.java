@@ -36,7 +36,7 @@ public class MemberController {
 
     @PostMapping("member/create")
     public String memberCreate(MemberDto memberDto) throws SQLException {
-        Address address = new Address(memberDto.getCity(), memberDto.getStreet(), memberDto.getZipcode());
+        Address address = new Address(memberDto.getCity(), memberDto.getDetail(), memberDto.getZipcode());
         Member member1 = Member.builder()
                 .email(memberDto.getEmail())
                 .password(memberDto.getPassword())

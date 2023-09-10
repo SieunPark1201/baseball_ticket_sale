@@ -26,7 +26,7 @@ public class MemberService {
 //    회원수정
     @Transactional
     public Member update(MemberDto memberDto) throws Exception {
-        Member member1 = memberRepository.findById(Long.parseLong(Integer.toString(memberDto.getId())))
+        Member member1 = memberRepository.findById(Long.parseLong(Integer.toString(Math.toIntExact(memberDto.getId()))))
                 .orElseThrow(Exception::new);
 
         // memberDTO로부터 업데이트할 정보를 추출하여 기존 사용자 정보를 업데이트
