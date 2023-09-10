@@ -32,25 +32,29 @@
 
     <!-- 구단 선택 란 -->
     <div class="form-group">
-        <label for="teamSelect">구단 선택:</label>
-        <select class="form-control" id="teamSelect">
-            <option value="">전체</option>
-            <option value="Team1">구단1</option>
-            <option value="Team2">구단2</option>
-            <!-- 구단 목록을 동적으로 생성하려면 서버에서 데이터 가져와서 반복문으로 옵션을 추가할 수 있습니다. -->
+        <select th:field="*{teams}" class="form-control">
+            <option value="">구단 선택</option>
+            <option th:each="team : ${teams}"
+                    th:value="${team}"
+                    th:text="${team}">team
+            </option>
         </select>
     </div>
 
-    <!-- 야구장 선택 란 -->
+    <!-- 야구장 선택란 -->
     <div class="form-group">
-        <label for="stadiumSelect">야구장 선택:</label>
-        <select class="form-control" id="stadiumSelect">
-            <option value="">전체</option>
-            <option value="Stadium1">야구장1</option>
-            <option value="Stadium2">야구장2</option>
-            <!-- 야구장 목록을 동적으로 생성하려면 서버에서 데이터 가져와서 반복문으로 옵션을 추가할 수 있습니다. -->
+
+        <select th:field="*{stadiums}" class="form-control">
+            <option value="">야구장 선택</option>
+            <option th:each="stadium : ${stadiums}"
+                    th:value="${stadium}"
+                    th:text="${stadium}">stadium
+            </option>
         </select>
+    <button type="submit">검색</button>
+    </form>
     </div>
+
 
     <!-- 경기 목록 테이블 -->
     <table class="table table-striped">
@@ -60,6 +64,7 @@
             <th scope="col">팀1</th>
             <th scope="col">팀2</th>
             <th scope="col">구장</th>
+            <th scope="col">예매</th>
         </tr>
         </thead>
         <tbody>
@@ -69,6 +74,13 @@
             <td th:text = "${matching.homeTeam}"></td>
             <td th:text = "${matching.awayTeam}"></td>
             <td th:text = "${matching.stadium}"></td>
+            <td>
+                <!-- 예매 버튼 -->
+                <form th:action="@{/reserve}" method="post">
+                    <input type="hidden" th:name="matchId" th:value="${matching.id}">
+                    <button type="submit" class="btn btn-primary">예매</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

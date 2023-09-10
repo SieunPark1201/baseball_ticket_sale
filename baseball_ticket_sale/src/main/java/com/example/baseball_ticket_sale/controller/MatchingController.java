@@ -1,6 +1,8 @@
 package com.example.baseball_ticket_sale.controller;
 
 import com.example.baseball_ticket_sale.domain.Matching;
+import com.example.baseball_ticket_sale.domain.Stadium;
+import com.example.baseball_ticket_sale.domain.Team;
 import com.example.baseball_ticket_sale.repository.MatchingRepository;
 import com.example.baseball_ticket_sale.service.MatchingService;
 import net.bytebuddy.asm.MemberSubstitution;
@@ -24,7 +26,11 @@ public class MatchingController {
 
 //    홈화면
     @GetMapping("/")
-    public String home() {return "home";}
+    public String home(Model model) {
+        model.addAttribute("teams", Team.values());
+        model.addAttribute("stadiums", Stadium.values());
+        return "home";
+    }
 
 //    목록 조회
     @GetMapping("/lists")
