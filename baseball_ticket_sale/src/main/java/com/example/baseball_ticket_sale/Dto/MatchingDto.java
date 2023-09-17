@@ -13,7 +13,7 @@ public class MatchingDto {
     private String matchDayAndTime;
     private String homeTeam;
     private String awayTeam;
-    private String stardium;
+    private String stadium;
     private String rainCancel;
     private LocalDateTime reservationTime;
 

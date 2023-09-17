@@ -1,7 +1,7 @@
 package com.example.baseball_ticket_sale.controller;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Controller;
 
-@Repository
+@Controller
 public class ReservationController {
 }

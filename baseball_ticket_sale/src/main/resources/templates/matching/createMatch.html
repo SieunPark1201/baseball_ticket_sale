@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5 mb-4">경기 등록</h2>
+
+    <form role="form" action="/match/create" th:object="${newMatch}" method="post">
+        <div class="mb-3">
+            <label for="matchDayAndTime" class="form-label">경기 날짜</label>
+            <input type="text" id="matchDayAndTime" th:field="*{matchDayAndTime}" class="form-control" placeholder="경기 날짜를 입력하세요">
+        </div>
+        <div class="mb-3">
+            <label for="homeTeam" class="form-label">홈팀</label>
+            <select id="homeTeam" th:field="*{homeTeam}" class="form-select">
+                <option th:each="team : ${T(com.example.baseball_ticket_sale.domain.Team).values()}"
+                        th:value="${team}" th:text="${team}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="awayTeam" class="form-label">원정팀</label>
+            <select id="awayTeam" th:field="*{awayTeam}" class="form-select">
+                <option th:each="team : ${T(com.example.baseball_ticket_sale.domain.Team).values()}"
+                        th:value="${team}" th:text="${team}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="stadium" class="form-label">경기장</label>
+            <select id="stadium" th:field="*{stadium}" class="form-select">
+                <option th:each="stadium : ${T(com.example.baseball_ticket_sale.domain.Stadium).values()}"
+                        th:value="${stadium}" th:text="${stadium}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">등록하기</button>
+    </form>
+</div>
+</body>
+</html>

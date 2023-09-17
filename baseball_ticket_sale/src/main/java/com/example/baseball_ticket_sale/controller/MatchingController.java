@@ -1,15 +1,16 @@
 package com.example.baseball_ticket_sale.controller;
 
+import com.example.baseball_ticket_sale.Dto.MatchingDto;
 import com.example.baseball_ticket_sale.domain.Matching;
 import com.example.baseball_ticket_sale.domain.Stadium;
 import com.example.baseball_ticket_sale.domain.Team;
 import com.example.baseball_ticket_sale.repository.MatchingRepository;
 import com.example.baseball_ticket_sale.service.MatchingService;
-import net.bytebuddy.asm.MemberSubstitution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityNotFoundException;
@@ -29,6 +30,8 @@ public class MatchingController {
     public String home(Model model) {
         model.addAttribute("teams", Team.values());
         model.addAttribute("stadiums", Stadium.values());
+        List<Matching> matchingList = matchingService.findAll();
+        model.addAttribute("matchingList", matchingList);
         return "home";
     }
 
@@ -57,7 +60,24 @@ public class MatchingController {
         return "home";
 }
 
+//    경기 등록
+    @GetMapping("/match/create")
+    public String createMatch(Model model) {
+        model.addAttribute("newMatch", new MatchingDto());
+        return "matching/createMatch";
+    }
 
+    @PostMapping("/match/create")
+    public String createMatch(MatchingDto matchingDto) throws Exception {
+        Matching matching = Matching.builder()
+                .matchDayAndTime(matchingDto.getMatchDayAndTime())
+                .homeTeam(matchingDto.getHomeTeam())
+                .awayTeam(matchingDto.getAwayTeam())
+                .stadium(matchingDto.getStadium())
+                .build();
+        matchingService.create(matching);
+        return "redirect:/";
+    }
 
 
 }
