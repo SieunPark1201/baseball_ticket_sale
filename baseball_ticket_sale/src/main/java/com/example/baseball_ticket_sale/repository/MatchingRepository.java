@@ -12,4 +12,5 @@ public interface MatchingRepository extends JpaRepository<Matching, Long> {
     List<Matching> findByHomeTeamOrAwayTeam(String team, String team1);
 
     List<Matching> findByStadium(String stadium);
+
 }

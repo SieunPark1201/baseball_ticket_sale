@@ -15,6 +15,6 @@ public class MatchingDto {
     private String awayTeam;
     private String stadium;
     private String rainCancel;
-    private LocalDateTime reservationTime;
+
 
 }

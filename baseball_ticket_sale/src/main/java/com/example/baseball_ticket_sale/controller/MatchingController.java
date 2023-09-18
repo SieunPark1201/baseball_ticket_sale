@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,8 +20,6 @@ import java.util.List;
 @Controller
 public class MatchingController {
 
-    @Autowired
-    MatchingRepository matchingRepository;
     @Autowired
     MatchingService matchingService;
 
@@ -36,11 +35,11 @@ public class MatchingController {
     }
 
 //    목록 조회
-    @GetMapping("/lists")
+    @GetMapping("/match/lists")
     public String postFindAll(Model model){
         List<Matching> matches = matchingService.findAll();
         model.addAttribute("matchingList",matches);
-        return "home";
+        return "matching/matchingList";
     }
 
 //    구단명 검색 조회
@@ -64,11 +63,12 @@ public class MatchingController {
     @GetMapping("/match/create")
     public String createMatch(Model model) {
         model.addAttribute("newMatch", new MatchingDto());
+
         return "matching/createMatch";
     }
 
     @PostMapping("/match/create")
-    public String createMatch(MatchingDto matchingDto) throws Exception {
+    public String createMatch(MatchingDto matchingDto, Model model) throws Exception {
         Matching matching = Matching.builder()
                 .matchDayAndTime(matchingDto.getMatchDayAndTime())
                 .homeTeam(matchingDto.getHomeTeam())
@@ -76,8 +76,16 @@ public class MatchingController {
                 .stadium(matchingDto.getStadium())
                 .build();
         matchingService.create(matching);
-        return "redirect:/";
+//        String message = "등록 되었습니다!";
+//        model.addAttribute("message", message);
+        return "redirect:/match/create";
     }
 
+//   경기 취소
+    @GetMapping("/match/delete/{myId}")
+    public String deleteMatch(@PathVariable Long myId) {
+        matchingService.delete(myId);
+        return "redirect:/match/lists";
+    }
 
 }

@@ -17,4 +17,6 @@ public class ReservationDto {
 
     private String refundMoney;
 
+    private LocalDateTime reservationTime;
+
 }

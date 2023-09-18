@@ -52,10 +52,15 @@ public class MatchingService {
         return matchinglistForStadium;
     }
 
-
+    public Matching findById(Long myId) {
+        return matchingRepository.findById(myId).orElse(null);
+    }
 
 //    경기 상태 변경
 
-
+    public void delete(Long myId) {
+        Matching matching = matchingRepository.findById(myId).orElse(null);
+        matchingRepository.delete(matching);
+    }
 
     }
