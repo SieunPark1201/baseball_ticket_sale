@@ -56,11 +56,10 @@ public class MatchingService {
         return matchingRepository.findById(myId).orElse(null);
     }
 
-//    경기 상태 변경
-
+//    경기 삭제
     public void delete(Long myId) {
         Matching matching = matchingRepository.findById(myId).orElse(null);
         matchingRepository.delete(matching);
     }
 
-    }
+}

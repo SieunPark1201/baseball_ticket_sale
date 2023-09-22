@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Language" content="ko-KR">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <title>야구장 좌석 선택</title>
+
+  <!-- css  -->
+  <style>
+	:root{padding:0;margin:0;font-size:0;box-sizing:border-box;}
+	html,body{padding:0;margin:0;}
+	#contents{width:100vw;padding:20px;box-sizing:border-box;}
+
+	.navbar{width:100%;}
+	.navbar a{display:block;font-size:20px;line-height:40px;color:#000;border:1px solid #000;text-align:center;text-decoration:none;}
+
+	.teamWrap{display:flex;align-items:center;justify-content:space-between;font-size:20px;color:#000;border-bottom:1px solid #000;}
+	.teamWrap .teamBox{font-size:40px;}
+	.teamWrap p span{display:block;}
+
+	.baseballWrap{display:flex;width:100%;height:100%;overflow:hidden;position:relative;}
+	.baseballWrap .seatWrap, .baseballWrap .remainingSeats{flex:1;position:relative;box-sizing:border-box;padding-top:100px;height:auto;}
+	.baseballWrap .seatWrap .area{position:relative;width:100%;height:100%;}
+
+	.baseballWrap .area{display:block;}
+	.baseballWrap .area [class^="area"]{display:flex;position:relative;}
+	.baseballWrap .area .areaS{width:100%;background-color:yellow;}
+	.baseballWrap .area .areaA{width:100%;background-color:red;}
+	.baseballWrap .area .areaB{width:100%;background-color:green;}
+	.baseballWrap .area .areaC{width:100%;background-color:blue;}
+	.baseballWrap .area .areaS::before{content:'S등급';font-size:20px;line-height:60px;position:absolute;left:10px;top:0;}
+	.baseballWrap .area .areaA::before{content:'A등급';font-size:20px;line-height:60px;position:absolute;left:10px;top:0;}
+	.baseballWrap .area .areaB::before{content:'B등급';font-size:20px;line-height:60px;position:absolute;left:10px;top:0;}
+	.baseballWrap .area .areaC::before{content:'C등급';font-size:20px;line-height:60px;position:absolute;left:10px;top:0;}
+
+    .seatList{font-size:0;display:flex;align-items:center;flex-wrap:wrap;box-sizing:border-box;padding:0 70px;margin:0;}
+    .seatList li{display:inline-block;vertical-align:top;padding:10px;}
+    .seatList li .seat{width:40px;height:40px;border:1px solid #000;background-color:#fff;color:#000;font-size:12px;}
+    .seatList li .seat.on{background-color:pink;}
+    .seatList li .seat.active{background-color:#000 !important;color:#fff !important;pointer-events:none !important;}
+
+	.baseballWrap .remainingSeats{margin-left:50px;position:relative;}
+	.baseballWrap .remainingSeats::before{content:'';width:1px;height:100%;background-color:#000;position:absolute;left:-25px;top:0;}
+	.baseballWrap .remainingSeats .remainingSeatsTxt div + div{margin-top:50px;}
+	.baseballWrap .remainingSeats .remainingSeatsTxt span{display:block;font-size:20px;color:#000;}
+
+
+	.title{font-size:50px;color:#000;position:absolute;left:0;top:0;margin:0;}
+</style>
+  <!--// css  -->
+
+  <!-- js -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <!--// js -->
+
+  <script>
+	$(function(){
+		$(".seat").on("click", function(){
+			if(!$(this).hasClass("on")){
+				$(this).addClass("on");
+			}else{
+				$(this).removeClass("on");
+			}
+		});
+	});
+</script>
+
+</head>
+
+<body>
+<div id="wrap">
+  <div id="container">
+    <div id="contents">
+      <!-- gnb  -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand mx-auto" href="/">야구 예매 사이트</a>
+      </nav>
+      <!--// gnb  -->
+
+      <div class="teamWrap">
+        <div class="teamBox">
+          홈팀 : <span th:text="${matching.homeTeam}"></span>
+      </div>
+        <p>
+        <div class="stadium">
+          구장 : <span th:text="${matching.stadium}"></span>
+        </div>
+        <div class="time">
+          경기시간 : <span th:text="${matching.matchDayAndTime}"></span>
+        </div>
+        </p>
+      <div class="teamBox">
+        원정팀 : <span th:text="${matching.awayTeam}"></span>
+      </div>
+      </div>
+
+      <div class="baseballWrap">
+        <!-- 좌석 -->
+        <section class="seatWrap">
+          <h1 class="title">좌석</h1>
+          <div class="area">
+            <!-- S 구역 -->
+            <div class="areaS">
+              <ul class="seatList">
+                <li>
+                  <!-- 좌석마감 시 클래스 active 추가 -->
+                  <button class="seat active">1</button>
+                </li>
+                <li>
+                  <button class="seat">2</button>
+                </li>
+                <li>
+                  <button class="seat">3</button>
+                </li>
+                <li>
+                  <button class="seat">4</button>
+                </li>
+                <li>
+                  <button class="seat">5</button>
+                </li>
+              </ul>
+            </div>
+            <!--// S 구역 -->
+            <!-- A 구역 -->
+            <div class="areaA">
+              <ul class="seatList">
+                <li>
+                  <button class="seat">1</button>
+                </li>
+                <li>
+                  <button class="seat">2</button>
+                </li>
+                <li>
+                  <button class="seat">3</button>
+                </li>
+                <li>
+                  <button class="seat">4</button>
+                </li>
+                <li>
+                  <button class="seat">5</button>
+                </li>
+                <li>
+                  <button class="seat">6</button>
+                </li>
+                <li>
+                  <button class="seat">7</button>
+                </li>
+                <li>
+                  <button class="seat">8</button>
+                </li>
+                <li>
+                  <button class="seat">9</button>
+                </li>
+                <li>
+                  <button class="seat">10</button>
+                </li>
+              </ul>
+            </div>
+            <!--// A 구역 -->
+            <!-- B 구역 -->
+            <div class="areaB">
+              <ul class="seatList">
+                <li>
+                  <button class="seat">1</button>
+                </li>
+                <li>
+                  <button class="seat">2</button>
+                </li>
+                <li>
+                  <button class="seat">3</button>
+                </li>
+                <li>
+                  <button class="seat">4</button>
+                </li>
+                <li>
+                  <button class="seat">5</button>
+                </li>
+                <li>
+                  <button class="seat">6</button>
+                </li>
+                <li>
+                  <button class="seat">7</button>
+                </li>
+                <li>
+                  <button class="seat">8</button>
+                </li>
+                <li>
+                  <button class="seat">9</button>
+                </li>
+                <li>
+                  <button class="seat">10</button>
+                </li>
+                <li>
+                  <button class="seat">11</button>
+                </li>
+                <li>
+                  <button class="seat">12</button>
+                </li>
+                <li>
+                  <button class="seat">13</button>
+                </li>
+                <li>
+                  <button class="seat">14</button>
+                </li>
+                <li>
+                  <button class="seat">15</button>
+                </li>
+              </ul>
+            </div>
+            <!--// B 구역 -->
+            <!-- C 구역 -->
+            <div class="areaC">
+              <ul class="seatList">
+                <li>
+                  <button class="seat">1</button>
+                </li>
+                <li>
+                  <button class="seat">2</button>
+                </li>
+                <li>
+                  <button class="seat">3</button>
+                </li>
+                <li>
+                  <button class="seat">4</button>
+                </li>
+                <li>
+                  <button class="seat">5</button>
+                </li>
+                <li>
+                  <button class="seat">6</button>
+                </li>
+                <li>
+                  <button class="seat">7</button>
+                </li>
+                <li>
+                  <button class="seat">8</button>
+                </li>
+                <li>
+                  <button class="seat">9</button>
+                </li>
+                <li>
+                  <button class="seat">10</button>
+                </li>
+                <li>
+                  <button class="seat">11</button>
+                </li>
+                <li>
+                  <button class="seat">12</button>
+                </li>
+                <li>
+                  <button class="seat">13</button>
+                </li>
+                <li>
+                  <button class="seat">14</button>
+                </li>
+                <li>
+                  <button class="seat">15</button>
+                </li>
+                <li>
+                  <button class="seat">16</button>
+                </li>
+                <li>
+                  <button class="seat">17</button>
+                </li>
+                <li>
+                  <button class="seat">18</button>
+                </li>
+                <li>
+                  <button class="seat">19</button>
+                </li>
+                <li>
+                  <button class="seat">20</button>
+                </li>
+              </ul>
+            </div>
+            <!--// C 구역 -->
+          </div>
+        </section>
+        <!--// 좌석 -->
+
+        <!-- 남은좌석  -->
+        <section class="remainingSeats">
+          <h1 class="title">남은좌석</h1>
+          <div class="remainingSeatsTxt">
+            <div>
+              <span>S등급 남은 자리 : 1개</span>
+            </div>
+            <div>
+              <span>A등급 남은 자리 : 2개</span>
+            </div>
+            <div>
+              <span>B등급 남은 자리 : 3개</span>
+            </div>
+            <div>
+              <span>C등급 남은 자리 : 4개</span>
+            </div>
+          </div>
+        </section>
+        <!--// 남은좌석  -->
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

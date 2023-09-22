@@ -76,7 +76,7 @@
             <td th:text = "${matching.stadium}"></td>
             <td>
                 <!-- 예매 버튼 -->
-                <form th:action="@{/reserve}" method="post">
+                <form th:action="@{/reservation}" method="get">
                     <input type="hidden" th:name="matchId" th:value="${matching.matchingId}">
                     <button type="submit" class="btn btn-primary">예매</button>
                 </form>

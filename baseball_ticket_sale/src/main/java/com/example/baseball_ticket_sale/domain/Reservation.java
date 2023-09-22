@@ -28,13 +28,17 @@ public class Reservation {
     @JoinColumn(name="id")
     private List<Member> members;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="paymentNumber")
-    private Payment payment;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="paymentNumber")
+//    private Payment payment;
+//
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name="ticketNumber")
+//    private List<Ticket> tickets;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name="ticketNumber")
-    private List<Ticket> tickets;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="team")
+    private Matching matching;
 
 
 
