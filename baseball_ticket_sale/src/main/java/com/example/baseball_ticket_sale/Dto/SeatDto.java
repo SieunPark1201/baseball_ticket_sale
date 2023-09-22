@@ -7,10 +7,12 @@ import lombok.Setter;
 @Setter
 public class SeatDto {
 
-    private Long id;
+    private Long seatId;
 
     private String seatType;
 
     private int seatNumber;
+
+    private int isReservation;
 
 }

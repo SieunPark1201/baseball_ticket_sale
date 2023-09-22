@@ -34,6 +34,8 @@ public class PaymentService {
     }
 
 
+
+//    결제 정보 업데이트
     public Payment update(PaymentDto paymentDto) throws Exception {
         Payment payment1 = paymentRepository.findById(Long.parseLong(Integer.toString(Math.toIntExact(paymentDto.getPaymentNumber()))))
                 .orElseThrow(Exception::new);
