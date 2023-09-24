@@ -10,7 +10,7 @@
 </nav>
 <div class="container">
     <h2 class="mt-5 mb-4">경기 등록</h2>
-    <form role="form" action="/match/create" th:object="${newMatch}" method="post">
+    <form role="form" action="/match/create" th:action="@{/match/create}" th:object="${newMatch}" method="post">
         <div class="mb-3">
             <label for="matchDayAndTime" class="form-label">경기 날짜</label>
             <input type="text" id="matchDayAndTime" th:field="*{matchDayAndTime}" class="form-control" placeholder="경기 날짜를 선택하세요">

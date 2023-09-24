@@ -1,24 +1,22 @@
 package com.example.baseball_ticket_sale.domain;
 
+
 import com.sun.istack.NotNull;
 import lombok.*;
-import net.bytebuddy.asm.Advice;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "matching")
 public class Matching {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column(name = "matching_id")
     private Long matchingId;
 
     @NotNull
@@ -40,7 +38,7 @@ public class Matching {
     private String reservationTime;
 
     @Builder
-    public Matching(Long matchingId,String matchDayAndTime, String homeTeam, String awayTeam, String stadium) {
+    public Matching(Long matchingId, String matchDayAndTime, String homeTeam, String awayTeam, String stadium) {
         this.matchingId = matchingId;
         this.matchDayAndTime = matchDayAndTime;
         this.homeTeam = homeTeam;

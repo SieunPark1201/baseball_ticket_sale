@@ -8,8 +8,7 @@ import java.util.List;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Long> {
-    Seat findBySeatType(String seatType);
-    int countBySeatType(String seatType);
+    List<Seat> findBySeatType(String seatType);
 
     List<Seat> findBySeatTypeAndIsReservation(String seatType, int i);
 }

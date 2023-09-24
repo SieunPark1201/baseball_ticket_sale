@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -21,8 +22,10 @@ public class Seat {
 
     private int seatNumber;
 
-    private int seatCount;
+//    private int seatCount;
 
+
+    @ColumnDefault("0")
     private int isReservation;    // isReservation이 0이면 예매가능, 1이면 예매불가
 
     @ManyToOne
@@ -34,7 +37,7 @@ public class Seat {
         this.seatId =seatId;
         this.seatType = seatType;
         this.seatNumber = seatNumber;
-        this.seatCount = seatCount;
+//        this.seatCount = seatCount;
         this.matching = matching;
         this.isReservation = isReservation;
     }

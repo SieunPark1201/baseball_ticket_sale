@@ -1,7 +1,7 @@
 spring:
   datasource:
-    drive-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/baseball_ticket_sale
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.176.1:3306/baseball_ticket_sale
     username: root
     password: 1234
   jpa:
@@ -10,4 +10,4 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
-    show_sql: true
+    'show_sql': true

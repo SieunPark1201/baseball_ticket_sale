@@ -48,6 +48,7 @@ public class MemberService {
     public void delete(Long id, MemberDto memberDto) {
         Member member1= memberRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        memberRepository.delete(member1);
 
     }
 

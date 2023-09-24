@@ -283,26 +283,26 @@
         </section>
         <!--// 좌석 -->
 
-        <!-- 남은좌석  -->
+        <!--// 남은좌석  -->
         <section class="remainingSeats">
           <h1 class="title">남은좌석</h1>
           <div class="remainingSeatsTxt">
             <div>
-              <span>S등급 남은 자리 : 1개</span>
+              <span th:text="'S등급 좌석의 잔여석 : ' + ${seatCountS}"></span>
             </div>
             <div>
-              <span>A등급 남은 자리 : 2개</span>
+              <span th:text="'A등급 좌석의 잔여석 : ' + ${seatCountA}"></span>
             </div>
             <div>
-              <span>B등급 남은 자리 : 3개</span>
+              <span th:text="'B등급 좌석의 잔여석 : ' + ${seatCountB}"></span>
             </div>
             <div>
-              <span>C등급 남은 자리 : 4개</span>
+              <span th:text="'C등급 좌석의 잔여석 : ' + ${seatCountC}"></span>
             </div>
           </div>
         </section>
-        <!--// 남은좌석  -->
       </div>
+
     </div>
   </div>
 </div>

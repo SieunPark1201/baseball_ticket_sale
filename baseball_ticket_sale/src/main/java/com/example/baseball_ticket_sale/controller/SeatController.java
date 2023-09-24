@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class SeatController {
@@ -52,28 +55,31 @@ public class SeatController {
         return "seatList";
         }
 
-    // 등급별 좌석 수 조회
-    @GetMapping("/seats/byType")
-    public String getSeatCounts(Model model) {
-        List<Seat> seats = seatService.getAllSeats();
-        model.addAttribute("seats", seats);
-        return "seats";
-    }
 
-    // 등급별 좌석 수 업데이트
-    @PostMapping("/seats/update")
-    public String updateSeatCounts(@RequestParam String seatType, @RequestParam int newCount) {
-        seatService.updateSeatCount(seatType, newCount);
-        return "redirect:/seats";
-    }
 
 
     // 등급별 좌석 수 조회 및 화면에 전달
-    @GetMapping("/seats/{seatType}")
-    public String getSeatCount(@PathVariable String seatType, Model model) {
-        int seatCount = seatService.getSeatCountByType(seatType);
-        model.addAttribute("seatCount", seatCount);
-        return "seat_count"; // 좌석 수를 표시할 페이지로 이동
+    @GetMapping("/seats")
+    public String getSeatCounts(Model model) {
+
+       List<String> seatTypes = List.of("S","A","B","C");
+
+       // 각 등급별 좌석 수 조회
+
+        int seatCountS= seatService.countBySeatType("S");
+        int seatCountA= seatService.countBySeatType("A");
+        int seatCountB= seatService.countBySeatType("B");
+        int seatCountC= seatService.countBySeatType("C");
+
+
+        model.addAttribute("seatTypes", seatTypes);
+        model.addAttribute("seatCountS", seatCountS);
+        model.addAttribute("seatCountA", seatCountA);
+        model.addAttribute("seatCountB",seatCountB);
+        model.addAttribute("seatCountC",seatCountC);
+
+        return "seats";
+
     }
 
 

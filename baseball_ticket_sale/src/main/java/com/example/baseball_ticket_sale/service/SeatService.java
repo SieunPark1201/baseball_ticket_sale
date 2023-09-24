@@ -41,23 +41,13 @@ public class SeatService {
     }
 
 
-
-
-
     // 등급별 좌석 수 조회
-    public int getSeatCountByType(String seatType) {
-        return seatRepository.countBySeatType(seatType);
+    public int countBySeatType(String seatType) {
+        List<Seat> seats = seatRepository.findBySeatTypeAndIsReservation(seatType, 0); // 0은 예약되지 않은 좌석을 나타내는 값입니다.
+        return seats.size();
     }
 
 
-//    등급별 좌석 수 업데이트
-    public void updateSeatCount(String seatType, int newCount) {
-        Seat seat = seatRepository.findBySeatType(seatType);
-        if (seat != null) {
-            seat.setCount(newCount);
-            seatRepository.save(seat);
-        }
-    }
 
 
 }

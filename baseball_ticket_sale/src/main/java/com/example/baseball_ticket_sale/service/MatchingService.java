@@ -41,7 +41,7 @@ public class MatchingService {
     }
 
 
-//    경기 팀으로 조회
+//    경기 구단으로 조회
     public List<Matching> findByStadium(String stadium) {
         List<Matching> matchinglistForStadium = matchingRepository.findByStadium(stadium);
 
