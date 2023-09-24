@@ -5,6 +5,8 @@ import com.example.baseball_ticket_sale.domain.Matching;
 import com.example.baseball_ticket_sale.domain.Seat;
 import com.example.baseball_ticket_sale.service.MatchingService;
 import com.example.baseball_ticket_sale.service.SeatService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @Controller
 public class SeatController {
+
 
     @Autowired
     private SeatService seatService;
@@ -60,16 +64,13 @@ public class SeatController {
 
     // 등급별 좌석 수 조회 및 화면에 전달
     @GetMapping("/seats")
-    public String getSeatCounts(Model model) {
+    public String getSeatCounts(@RequestParam Matching matchingId, Model model) {
+        List<String> seatTypes = List.of("S","A","B","C");
 
-       List<String> seatTypes = List.of("S","A","B","C");
-
-       // 각 등급별 좌석 수 조회
-
-        int seatCountS= seatService.countBySeatType("S");
-        int seatCountA= seatService.countBySeatType("A");
-        int seatCountB= seatService.countBySeatType("B");
-        int seatCountC= seatService.countBySeatType("C");
+        int seatCountS = seatService.countBySeatType("S", matchingId);
+        int seatCountA = seatService.countBySeatType("A", matchingId);
+        int seatCountB = seatService.countBySeatType("B", matchingId);
+        int seatCountC = seatService.countBySeatType("C", matchingId);
 
 
         model.addAttribute("seatTypes", seatTypes);
@@ -77,6 +78,10 @@ public class SeatController {
         model.addAttribute("seatCountA", seatCountA);
         model.addAttribute("seatCountB",seatCountB);
         model.addAttribute("seatCountC",seatCountC);
+
+
+
+
 
         return "seats";
 

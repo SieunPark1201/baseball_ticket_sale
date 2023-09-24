@@ -1,5 +1,6 @@
 package com.example.baseball_ticket_sale.repository;
 
+import com.example.baseball_ticket_sale.domain.Matching;
 import com.example.baseball_ticket_sale.domain.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,4 +12,8 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
     List<Seat> findBySeatType(String seatType);
 
     List<Seat> findBySeatTypeAndIsReservation(String seatType, int i);
+
+
+    List<Seat> findByMatchingIdAndSeatType(Matching matching, String seatType);
+
 }

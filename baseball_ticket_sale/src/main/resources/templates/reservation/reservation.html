@@ -287,18 +287,16 @@
         <section class="remainingSeats">
           <h1 class="title">남은좌석</h1>
           <div class="remainingSeatsTxt">
-            <div>
-              <span th:text="'S등급 좌석의 잔여석 : ' + ${seatCountS}"></span>
-            </div>
-            <div>
-              <span th:text="'A등급 좌석의 잔여석 : ' + ${seatCountA}"></span>
-            </div>
-            <div>
-              <span th:text="'B등급 좌석의 잔여석 : ' + ${seatCountB}"></span>
-            </div>
-            <div>
-              <span th:text="'C등급 좌석의 잔여석 : ' + ${seatCountC}"></span>
-            </div>
+            <table>
+              <tr>
+                <th>등급</th>
+                <th>잔여석</th>
+              </tr>
+              <tr th:each="(seatType, count) : ${seatCounts}">
+                <td th:text="${seatType + '등급'}"></td>
+                <td th:text="${count}"></td>
+              </tr>
+            </table>
           </div>
         </section>
       </div>

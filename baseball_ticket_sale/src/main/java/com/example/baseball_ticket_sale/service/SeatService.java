@@ -16,6 +16,7 @@ public class SeatService {
     @Autowired
     private SeatRepository seatRepository;
 
+
     public void create(Seat seat) throws Exception {
         seatRepository.save(seat);
     }
@@ -42,8 +43,8 @@ public class SeatService {
 
 
     // 등급별 좌석 수 조회
-    public int countBySeatType(String seatType) {
-        List<Seat> seats = seatRepository.findBySeatTypeAndIsReservation(seatType, 0); // 0은 예약되지 않은 좌석을 나타내는 값입니다.
+    public int countBySeatType(String seatType, Matching matching) {
+        List<Seat> seats = seatRepository.findByMatchingIdAndSeatType(matching, seatType);
         return seats.size();
     }
 
